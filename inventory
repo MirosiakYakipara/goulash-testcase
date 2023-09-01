@@ -1,0 +1,8 @@
+[mysql_db_servers:children]
+mysql_db_mains
+mysql_db_slaves
+
+[mysql_db_mains]
+192.168.80.130 db_name="dev" db_user="dev" db_user_password="testpartner_db"
+
+[mysql_db_slaves]

@@ -1,0 +1,25 @@
+---
+
+- name: Install mysql on db-server
+  apt:
+    name: mysql-server
+    state: present
+
+- name: Install package for manage mysql-server
+  pip:
+    name: PyMySQL
+    state: present
+
+- name: Create user for database
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_user_password }}"
+    priv: "*.*:ALL,GRANT"
+    state: present
+    config_file: /etc/mysql/debian.cnf
+
+- name: Create db
+  mysql_db:
+    name: "{{ db_name }}"
+    config_file: /etc/mysql/debian.cnf
+
